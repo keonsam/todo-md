@@ -1,14 +1,19 @@
 import Fab from "./Fab";
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
+const c = jest.fn()
 
 const handleClick = (e) => {
+    c()
     return
 }
+
 describe("Fab", () => {
-    it("should create Fab", () => {
+    it("should create Fab and be clickable", () => {
         render(<Fab handleClick={handleClick} />)
         const button = screen.getByRole('button');
         expect(button).toBeInTheDocument();
+        fireEvent.click(button)
+        expect(c).toHaveBeenCalledTimes(1);
     })
 })
