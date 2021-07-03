@@ -36,7 +36,7 @@ const AppBar = () => {
             <label className="screenreader" htmlFor="header-search">
                 Search
             </label>
-            <input className="search-field" type="text" id="header-search" placeholder="Search by Title" value={search} onChange={handleChange} autocomplete="off"/>
+            <input className="search-field" type="text" id="header-search" placeholder="Search by Title" value={search} onChange={handleChange} autoComplete="off"/>
             <button type="submit" className="screenreader">
                 Search
             </button>
