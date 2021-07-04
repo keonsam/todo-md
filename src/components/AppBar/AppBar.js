@@ -25,12 +25,12 @@ const AppBar = () => {
     <header className={`app-bar ${toggleBar ? "show": ""}`} data-testid="header">
         <button className="toggle-btn">
             <span className="screenreader">Menu</span>
-            <img className="menu-img" src="/menu.svg" alt="menu icon"/> 
+            <img className="menu-img" src="/menu.svg" alt=""/> 
         </button>
         <h1 className="heading">Todo</h1>
         <button className="toggle-btn toggle-btn-search" onClick={toggleSearch}>
             <span className="screenreader">Search</span>
-            <img className="loupe-img" src="/loupe.svg" alt="search icon"/> 
+            <img className="loupe-img" src="/loupe.svg" alt=""/> 
         </button>
         <form className="search-form" role="search" onSubmit={handleSubmit}>
             <label className="screenreader" htmlFor="header-search">
@@ -42,7 +42,7 @@ const AppBar = () => {
             </button>
             <button className="toggle-btn toggle-btn-close" onClick={toggleSearch}>
                 <span className="screenreader">Close Search</span>
-                <span className="close"><img className="close-img" src="/close.svg" alt="close icon"/></span>
+                <span className="close"><img className="close-img" src="/close.svg" alt=""/></span>
             </button>
         </form>
     </header>
