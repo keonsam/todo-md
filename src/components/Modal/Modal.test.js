@@ -7,6 +7,7 @@ const handleSubmit = (e) => {
     e.preventDefault();
     global.alert({action: "form submit", title: "placeholder"})
 }
+
 describe("Fab", () => {
     it("should create Modal", () => {
         render(<Modal />)
