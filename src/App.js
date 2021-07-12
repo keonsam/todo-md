@@ -1,21 +1,19 @@
 import { useState } from 'react';
 import './App.css';
 import AppBar from './components/AppBar/AppBar';
-import Fab from './components/Fab/Fab';
-import Modal from './components/Modal/Modal';
+import TodoList from './components/TodoList/TodoList';
 
 function App() {
-  const [show, setShow] = useState(false);
-  const toggleModal = () => {
-    setShow(!show)
-  }
+  //minimal app, state management done without redux
+  const [search, setSearch] = useState("")
 
+  const onSubmit = (value) => {
+    setSearch(value)
+  }
   return (
     <div className="App">
-      <AppBar />
-      <Fab handleClick={toggleModal} />
-      <Modal active={show}  toggle={toggleModal} />
-      <div className={`overlay ${show ? "show": ""}`} tabIndex="-1"></div>
+      <AppBar onSubmit={onSubmit} />
+      <TodoList search={search} />
     </div>
   );
 }
