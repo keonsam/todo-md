@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Modal.css"
-const Modal = ({active, toggle, handleSubmit}) => {
+const Modal = ({active, toggle, onSubmit, initialValues}) => {
     const [title, setTitle] = useState("")
 
     const [desc, setDesc] = useState("")
@@ -12,6 +12,18 @@ const Modal = ({active, toggle, handleSubmit}) => {
     const handleDescChange = (e) => {
         setDesc(e.target.value)
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        onSubmit({title, description: desc})
+    }
+
+    useEffect(() => {
+        if(initialValues) {
+            setTitle(initialValues.title)
+            setDesc(initialValues.description)
+        }
+    }, [initialValues])
 
     return (
         <div
@@ -54,8 +66,8 @@ const Modal = ({active, toggle, handleSubmit}) => {
                     </div>
                 </div>
                 <div className="form-footer">
-                    <button className="btn btn-secondary btn-left" onClick={toggle}>Close</button>
-                    <button className="btn btn-primary" disabled={!title}>Submit</button>
+                    <button className="btn btn-secondary btn-left" onClick={toggle} type="button">Close</button>
+                    <button className="btn btn-primary" disabled={!title} type="submit">Submit</button>
                 </div>
             </form>
         </div>

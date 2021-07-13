@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./AppBar.css"
 
-const AppBar = () => {
+const AppBar = ({onSubmit}) => {
     const [search, setSearch] = useState("");
     const [toggleBar, setToggleBar] = useState(false);
 
@@ -19,6 +19,7 @@ const AppBar = () => {
     //handle form submit, either by entering and click submit button
     const handleSubmit = (e) => {
         e.preventDefault()
+        onSubmit(search || "")
     };
 
     return (
@@ -38,7 +39,7 @@ const AppBar = () => {
             </label>
             <input className="search-field" type="text" id="header-search" placeholder="Search by Title" value={search} onChange={handleChange} autoComplete="off"/>
             <button type="submit" className="screenreader">
-                Search
+                Submit
             </button>
             <button className="toggle-btn toggle-btn-close" onClick={toggleSearch}>
                 <span className="screenreader">Close Search</span>

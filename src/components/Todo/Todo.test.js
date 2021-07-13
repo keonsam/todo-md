@@ -1,9 +1,9 @@
 import Todo from "./Todo";
 import { render, screen, fireEvent } from '@testing-library/react';
-
-global.alert = jest.fn()
+import id from '../../utils/id'
 
 const todoData = {
+    id: id(),
     title: "clean the garage",
     description: "tidy the garage by 6:00 pm"
 }
@@ -27,11 +27,10 @@ const handleDelete = jest.fn((e) => {
 })
 
 const props = {
-    index: 0,
     handleEdit,
     handleComplete,
     handleDelete,
-    ...todoData
+    data: todoData
 }
 
 describe("Todo", () => {
@@ -62,7 +61,10 @@ describe("Todo", () => {
         const deleteBtn = screen.getByRole("button", { name: /Delete/i });
         fireEvent.click(deleteBtn);
         expect(handleEdit).toHaveBeenCalledTimes(1)
+        expect(handleEdit).toHaveBeenCalledWith(todoData.id)
         expect(handleComplete).toHaveBeenCalledTimes(1)
+        expect(handleComplete).toHaveBeenCalledWith(todoData.id)
         expect(handleDelete).toHaveBeenCalledTimes(1)
+        expect(handleDelete).toHaveBeenCalledWith(todoData.id)
     })
 })

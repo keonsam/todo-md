@@ -1,14 +1,15 @@
-const Todo = ({index, title, description, handleEdit, handleDelete, handleComplete}) => {
+const Todo = ({data, handleEdit, handleDelete, handleComplete}) => {
+    const {id, title, description} = data;
     return (
-        <li key={index}>
+        <li>
             <div>
-                <button onClick={handleEdit}>
+                <button onClick={() => handleEdit(id)}>
                     <span className="screenreader">Edit</span>
                 </button>
-                <button onClick={handleComplete}>
+                <button onClick={() => handleComplete(id)}>
                     <span className="screenreader">Complete</span>
                 </button>
-                <button onClick={handleDelete}>
+                <button onClick={() => handleDelete(id)}>
                     <span className="screenreader">Delete</span>
                 </button>
             </div>
