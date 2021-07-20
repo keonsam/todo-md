@@ -1,27 +1,35 @@
 import { useEffect, useState } from "react";
 import "./Modal.css"
-const Modal = ({active, toggle, onSubmit, initialValues}) => {
+const Modal = ({active, toggle, onNew, onEdit, initialValues}) => {
     const [title, setTitle] = useState("")
 
-    const [desc, setDesc] = useState("")
+    const [description, setDescription] = useState("")
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value)
     }
 
     const handleDescChange = (e) => {
-        setDesc(e.target.value)
+        setDescription(e.target.value)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        onSubmit({title, description: desc})
+        if (initialValues) {
+            const data = {...initialValues, title, description }
+            onEdit(data)
+        } else {
+            onNew({title, description})
+        }
     }
 
     useEffect(() => {
         if(initialValues) {
             setTitle(initialValues.title)
-            setDesc(initialValues.description)
+            setDescription(initialValues.description)
+        } else {
+            setTitle("")
+            setDescription("")
         }
     }, [initialValues])
 
@@ -60,7 +68,7 @@ const Modal = ({active, toggle, onSubmit, initialValues}) => {
                             id="description"
                             placeholder="Description"
                             rows="3"
-                            value={desc}
+                            value={description}
                             onChange={handleDescChange}
                             ></textarea>
                     </div>
